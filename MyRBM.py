@@ -54,6 +54,11 @@ for epoch in range(1, nb_epoch + 1):
     train_loss = 0
     s = 0.
     for id_user in range(0, nb_users - batch_size, batch_size):
+        # see: Algorithm 1. k-step contrastive divergence 
+        # Fischer, A. and Igel, C., 2012, September. 
+        # An introduction to restricted Boltzmann machines. 
+        # In Iberoamerican congress on pattern recognition (pp. 14-36). 
+        # Springer, Berlin, Heidelberg.
         vk = training_set[id_user:id_user+batch_size]
         v0 = training_set[id_user:id_user+batch_size]
         ph0,_ = rbm.sample_h(v0)

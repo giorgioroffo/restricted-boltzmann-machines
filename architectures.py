@@ -12,7 +12,13 @@ import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable
 
-# Creating the architecture of the Neural Network
+
+# Implementation refer to:
+# Fischer, A. and Igel, C., 2012, September. 
+# An introduction to restricted Boltzmann machines. 
+# In Iberoamerican congress on pattern recognition (pp. 14-36). 
+# Springer, Berlin, Heidelberg.
+
 class RBM():
     def __init__(self, nv, nh):
         self.W = torch.randn(nh, nv)
@@ -28,6 +34,7 @@ class RBM():
         activation = wy + self.b.expand_as(wy)
         p_v_given_h = torch.sigmoid(activation)
         return p_v_given_h, torch.bernoulli(p_v_given_h)
+    # see: Algorithm 1. k-step contrastive divergence 
     def train(self, v0, vk, ph0, phk):
         self.W += (torch.mm(v0.t(), ph0) - torch.mm(vk.t(), phk)).t()
         self.b += torch.sum((v0 - vk), 0)
