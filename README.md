@@ -2,7 +2,7 @@
 
 Unsupervised Deep Learning
 
-Template implementation
+Template implementation Recommender System that predicted binary ratings "Like" or "Not Like".
 
 Download the dataset from: https://grouplens.org/datasets/movielens/ 
 
